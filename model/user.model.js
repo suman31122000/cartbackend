@@ -13,13 +13,22 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    Phone_number: {
+    Phonenumber: {
         type: Number,
     },
     password: {
         type: String,
         required: true,
     },
+    coverimage:{
+        type:String,
+    },
+    profileimage:{
+        type:String,
+    },
+    refreshToken:{
+        type:String
+    }
 });
 
 
@@ -32,6 +41,21 @@ userSchema.pre("save",async function(next) {
 
 userSchema.methods.isPasswordCorrect=async function (password) {
     return await bcrypt.compare(password,this.password)
+  }
+
+  userSchema.methods.generateAccessToken=function(){
+    return jwt.sign({
+        id:this._id,
+        username:this.username,
+        email:this.email,
+        coverimage:this.coverimage,
+        profileimage:this.profileimage
+    },process.env.ACCESS_TOKEN_SECRET,{expiresIn:process.env.ACCESS_TOKEN_EXPIRY||"1h"});
+  }
+
+  userSchema.methods.generateRefreshToken=function(){
+    return jwt.sign({
+        id:this._id},process.env.REFRESH_TOKEN_SECRET,{expiresIn:process.env.REFRESH_TOKEN_EXPIRY|| "1d"});
   }
 const Userschema = mongoose.model("Userschema", userSchema);
 

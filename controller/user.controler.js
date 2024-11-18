@@ -14,9 +14,6 @@ const registereduser=async(req,res)=>{
         if(!email.includes("@gmail.com")){
             return res.status(400).send("email is invalid");
         }
-        if(password!=confirmPassword){
-            return res.status(400).send("password not match");
-        }
        const data= await user.save();
        console.log(data);
        return res.status(201).json({message:"user registered successfully"});
