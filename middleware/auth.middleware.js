@@ -3,7 +3,9 @@ import jwt from "jsonwebtoken";
 
     const jwtverify=async(req,res,next)=>{
         try{
+    
         const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
+        console.log(req.header("Authorization"));
         if(!token){
             throw new Error("token not found");
         }

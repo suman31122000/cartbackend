@@ -11,6 +11,6 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
     res.send("Hello from userRouter!");
   });
-app.use("/api/v1",userRouter);
+app.use("/v1",userRouter);
 
 export default app;
