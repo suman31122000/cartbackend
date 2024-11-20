@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
         try{
     
         const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
-        console.log(req.header("Authorization"));
+        // console.log(token);
         if(!token){
             throw new Error("token not found");
         }
