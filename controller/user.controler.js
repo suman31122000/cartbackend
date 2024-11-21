@@ -21,5 +21,21 @@ const registereduser=async(req,res)=>{
         console.log(error);
     }
 }
+const updateuseraddress=async(req,res)=>{
+    try {
+        const user=await User.findById(req.user._id);
+        if(!user){
+            return res.status(400).send("user not found");
+        }
+        const {address}=req.body;
+        user.address=address;
+        await user.save({validateBeforeSave:false});
+        console.log(user);
+        return res.status(200).json({message:"address updated successfully"});
+    } catch (error) {    
+        console.log(error);
+    }
+}
 
-export {registereduser};
+
+export {registereduser,updateuseraddress};

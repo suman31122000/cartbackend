@@ -28,6 +28,13 @@ const userSchema = new mongoose.Schema({
     },
     refreshToken:{
         type:String
+    },
+    address:{
+        type:String
+    },
+    wallet:{
+        type:String,
+        default:"0"
     }
 },{timestamps:true});
 
