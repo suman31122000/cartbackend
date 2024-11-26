@@ -20,9 +20,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    coverimage:{
-        type:String,
-    },
     profileimage:{
         type:String,
     },

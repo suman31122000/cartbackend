@@ -37,5 +37,21 @@ const updateuseraddress=async(req,res)=>{
     }
 }
 
+const userprofile=async(req,res)=>{
+    try {
+        const user=await User.findById(req.user._id);
+        if(!user){
+            return res.status(400).send("user not found");
+        }
+        const {profileimage}=req.files?.profileimage[0]?.path;
+        user.profileimage=profileimage;
+        await user.save({validateBeforeSave:false});
+        console.log(user);
+        return res.status(200).json({message:"profile image updated successfully"});
+    } catch (error) {    
+        console.log(error);
+    }
+}
 
-export {registereduser,updateuseraddress};
+
+export {registereduser,updateuseraddress,userprofile};

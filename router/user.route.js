@@ -4,6 +4,8 @@ import {loginuser,logoutuser} from "../controller/login.controler.js";
 import jwtverify from "../middleware/auth.middleware.js";
 import { userdata } from "../controller/userdata.controller.js";
 import { addproduct } from "../controller/product.controller.js";
+import { upload } from "../middleware/multer.js";
+import { userprofile } from "../controller/user.controler.js";
 
 const router=Router();
 
@@ -12,5 +14,6 @@ router.route("/login").post(loginuser);
 router.route("/logout").post(jwtverify,logoutuser);
 router.route("/user").get(jwtverify,userdata);
 router.route("/updateaddress").post(jwtverify,updateuseraddress);
-router.route("/addproduct").post(jwtverify,addproduct);
+router.route("/profileimage").post(jwtverify,upload.fields([{name:"profileimage",maxCount:1}]),userprofile );
+router.route("/addproduct").post(jwtverify,upload.fields([{name:"image",maxCount:1}]) ,addproduct);
 export default router;
