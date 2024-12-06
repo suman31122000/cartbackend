@@ -1,11 +1,12 @@
 import Razorpay from "razorpay";
+import dotenv from "dotenv";
+dotenv.config();
 const Payment = async(req,res)=>{
-  console.log(req.body);
-  const razorpay = new Razorpay({
-    key_id: "process.env.RAZORPAY_KEY_ID", 
-    key_secret: "process.env.RAZORPAY_KEY_SECRET", 
-
+  const razorpay =await new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID, 
+    key_secret: process.env.RAZORPAY_KEY_SECRET, 
   });
+
   const { amount, currency, receipt } = req.body;
 
   try {
@@ -19,8 +20,8 @@ const Payment = async(req,res)=>{
       phonenumber: req.phonenumber}
 
     };
-
     const order = await razorpay.orders.create(options);
+    console.log(order.notes);
     res.status(200).json(order);
   } catch (error) {
     console.error("Error creating order:", error);
@@ -28,7 +29,7 @@ const Payment = async(req,res)=>{
   }
 }
 
-export default Payment;
+export  {Payment};
 
 
 // const express = require("express");
