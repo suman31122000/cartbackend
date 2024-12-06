@@ -1,8 +1,8 @@
 import Razorpay from "razorpay";
 const Payment = async(req,res)=>{
   const razorpay = new Razorpay({
-    key_id: "process.env.RAZORPAY_KEY_ID", // Replace with your Razorpay Key ID
-    key_secret: "process.env.RAZORPAY_KEY_SECRET", // Replace with your Razorpay Key Secret
+    key_id: "process.env.RAZORPAY_KEY_ID", 
+    key_secret: "process.env.RAZORPAY_KEY_SECRET", 
 
   });
   const { amount, currency, receipt } = req.body;
@@ -12,6 +12,11 @@ const Payment = async(req,res)=>{
       amount: amount, // Amount in paise
       currency: currency || "INR",
       receipt: receipt || "receipt#1",
+      notes:
+      {user: req.username,
+      email: req.email,
+      phonenumber: req.phonenumber}
+
     };
 
     const order = await razorpay.orders.create(options);
