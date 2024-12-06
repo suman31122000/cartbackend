@@ -3,8 +3,8 @@ import User from "../model/user.model.js";
 import { uploadToCloudinary } from "../utils/cloudinary.js";
 const registereduser=async(req,res)=>{
     try {
-        const {username,email,password,confirmPassword}=req.body;
-        const user=new User({username,email,password});
+        const {username,email,password,Phonenumber}=req.body;
+        const user=new User({username,email,password,Phonenumber});
         const userExists=await User.findOne({$or:[{username},{email}]});
     if(userExists){
         return res.status(400).send("User already exists");
