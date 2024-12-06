@@ -6,7 +6,7 @@ import { userdata } from "../controller/userdata.controller.js";
 import { addproduct } from "../controller/product.controller.js";
 import { upload } from "../middleware/multer.js";
 import { userprofile } from "../controller/user.controler.js";
-import Payment from "../controller/payment.controller.js";
+// import Payment from "../controller/payment.controller.js";
 
 const router=Router();
 

@@ -1,7 +1,4 @@
-const express = require("express");
-const Razorpay = require("razorpay");
-
-
+import Razorpay from "razorpay";
 const Payment = async(req,res)=>{
   const razorpay = new Razorpay({
     key_id: "process.env.RAZORPAY_KEY_ID", // Replace with your Razorpay Key ID
