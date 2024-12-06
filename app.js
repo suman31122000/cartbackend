@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 const app=express();
 
 app.use(cors({
-  origin: ['https://wcommerce.netlify.app', 'http://localhost:5173/'],
+  origin: 'https://wcommerce.netlify.app',
   credentials: true
 }));
 app.use(express.json());
