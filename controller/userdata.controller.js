@@ -1,5 +1,6 @@
 import User from "../model/user.model.js";
-const userdata=async(req,res)=>{
+const 
+userdata=async(req,res)=>{
     try{
         const user=await User.findById(req.user._id);
         console.log(user);
