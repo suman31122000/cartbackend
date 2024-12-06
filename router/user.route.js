@@ -6,6 +6,7 @@ import { userdata } from "../controller/userdata.controller.js";
 import { addproduct } from "../controller/product.controller.js";
 import { upload } from "../middleware/multer.js";
 import { userprofile } from "../controller/user.controler.js";
+import Payment from "../controller/payment.controller.js";
 
 const router=Router();
 
@@ -16,4 +17,5 @@ router.route("/user").get(jwtverify,userdata);
 router.route("/updateaddress").post(jwtverify,updateuseraddress);
 router.route("/profileimage").post(jwtverify,upload.fields([{name:"profileimage",maxCount:1}]),userprofile );
 router.route("/addproduct").post(jwtverify,upload.fields([{name:"image",maxCount:1}]) ,addproduct);
+// router.route("/payment").post(jwtverify,Payment);
 export default router;
